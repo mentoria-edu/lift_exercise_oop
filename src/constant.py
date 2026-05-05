@@ -1,0 +1,1 @@
+FLOOR_AMOUNT = 18
