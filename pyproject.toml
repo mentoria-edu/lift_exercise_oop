@@ -1,0 +1,39 @@
+[project]
+name = "lift-exercise-oop"
+version = "0.1.0"
+description = "Oop lift simulation exercise"
+authors = [
+    {name = "Matheus O.",email = "mmarqsoliveira@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+]
+
+[dependency-groups]
+dev = [
+    "pytest (>=9.0.3,<10.0.0)",
+    "pytest-cov (>=7.1.0,<8.0.0)",
+    "ruff (>=0.15.10,<0.16.0)",
+    "pytest-mock (>=3.15.1,<4.0.0)"
+]
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+packages = [
+    { include = "*", from = "src" }
+]
+
+[tool.ruff]
+line-length = 79
+
+[tool.ruff.lint]
+preview = true
+select = ["B", "E", "F", "I", "W"]
+
+[tool.ruff.format]
+preview = true
+quote-style = "single"
