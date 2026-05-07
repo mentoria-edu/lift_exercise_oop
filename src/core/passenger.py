@@ -1,8 +1,8 @@
 from logging import info
 from random import randint, sample
 
-from chance import Chance
-from constant import FLOOR_AMOUNT
+from utils.chance import Chance
+from utils.constant import FLOOR_AMOUNT
 
 
 class Passenger:

@@ -1,9 +1,9 @@
 from logging import debug, info
 from time import sleep
 
-from building import Building
-from constant import LIFT_CAPACITY
-from direction import Direction
+from core.building import Building
+from utils.constant import LIFT_CAPACITY
+from core.direction import Direction
 
 
 class Lift:
@@ -52,28 +52,51 @@ class Lift:
         ]
 
         if self.direction == Direction.UP:
-            if floors_above and not self.is_empty:
-                target = min(floors_above)
-            if floors_above and self.is_empty:
-                target = max(floors_above)
-            if not floors_above:
-                target = max(floors_below)
+            target = self._set_target_up_direction(
+                floors_below=floors_below,
+                floors_above=floors_above
+            )
 
         if self.direction == Direction.DOWN:
-            if floors_below and not self.is_empty:
-                target = min(floors_below)
-            if floors_below and self.is_empty:
-                target = max(floors_below)
-            if not floors_below:
-                target = max(floors_above)
+            target = self._set_target_down_direction(
+                floors_above=floors_above,
+                floors_below=floors_below
+            )
 
         if self.direction == Direction.IDLE:
             target = min(
                 stops,
                 key=lambda floor: abs(floor - self.current_floor)
             )
+
         debug(f"[NEXT STOP] TARGET = {target}")
         return target
+    
+    def _set_target_up_direction(self, floors_below, floors_above):
+        if not floors_above:
+            target = max(floors_below)
+            return target
+
+        if self.is_empty:
+            target = max(floors_above)
+            return target
+        
+        if not self.is_empty:
+            target = min(floors_above)
+            return target
+
+    def _set_target_down_direction(self, floors_below, floors_above):
+        if not floors_below:
+            target = max(floors_above)
+            return target
+        
+        if self.is_empty:
+            target = max(floors_below)
+            return target
+        
+        if not self.is_empty:
+            target = min(floors_below)
+            return target
 
     def update_direction(self, target: int) -> None:
         if target > self.current_floor:
@@ -215,5 +238,3 @@ class Lift:
 
             if not moved and self.all_stops:
                 self.open_doors()
-
-            sleep(0.1)

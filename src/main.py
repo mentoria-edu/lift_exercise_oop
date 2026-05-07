@@ -1,5 +1,5 @@
-from lift import Lift
-from logger_config import config_logger
+from core.lift import Lift
+from utils.logger_config import config_logger
 
 
 def exec_lift() -> None:

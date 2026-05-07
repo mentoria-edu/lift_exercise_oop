@@ -2,9 +2,9 @@ from logging import debug, info
 from random import randint
 from time import sleep
 
-from chance import Chance
-from constant import FLOOR_AMOUNT
-from passenger import Passenger
+from utils.chance import Chance
+from utils.constant import FLOOR_AMOUNT
+from core.passenger import Passenger
 
 
 class Building:
