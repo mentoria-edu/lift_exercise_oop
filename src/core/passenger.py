@@ -23,7 +23,7 @@ class Passenger:
         if self.origin_floor > 0:
             for _passenger in range(self.passenger_amount):
                 if Chance.happens_by_chance(0.5) and self.origin_floor > 1:
-                    destinations.append(randint(0, self.origin_floor - 1))
+                    destinations.append(randint(1, self.origin_floor - 1))
                 else:
                     destinations.append(0)
 

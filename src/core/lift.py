@@ -2,8 +2,8 @@ from logging import debug, info
 from time import sleep
 
 from core.building import Building
-from utils.constant import LIFT_CAPACITY
 from core.direction import Direction
+from utils.constant import LIFT_CAPACITY
 
 
 class Lift:
@@ -71,7 +71,7 @@ class Lift:
 
         debug(f"[NEXT STOP] TARGET = {target}")
         return target
-    
+
     def _set_target_up_direction(self, floors_below, floors_above):
         if not floors_above:
             target = max(floors_below)
@@ -80,7 +80,7 @@ class Lift:
         if self.is_empty:
             target = max(floors_above)
             return target
-        
+
         if not self.is_empty:
             target = min(floors_above)
             return target
@@ -89,11 +89,11 @@ class Lift:
         if not floors_below:
             target = max(floors_above)
             return target
-        
+
         if self.is_empty:
             target = max(floors_below)
             return target
-        
+
         if not self.is_empty:
             target = min(floors_below)
             return target
