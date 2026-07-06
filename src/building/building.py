@@ -11,7 +11,7 @@ class Building:
         return GROUND_FLOOR
 
     def top_floor(self) -> int:
-        return self._total_floors
+        return self._total_floors - 1
 
     def call_floor(self, group: PassengersGroup) -> None:
         self._external_calls[group.origin_floor()] = group
