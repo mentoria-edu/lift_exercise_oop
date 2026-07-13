@@ -1,8 +1,7 @@
 from logging import debug
 
 from passengers.passenger import Passenger
-
-DEFAULT_CAPACITY = 6
+from utils.constants import DEFAULT_CAPACITY
 
 
 class Cabin:
@@ -28,8 +27,8 @@ class Cabin:
         debug(f"[board] PASSENGERS ABOARD: {self.occupants_count()}")
 
     def unboard(self, floor: int) -> list[Passenger]:
-        leaving_passengers = self._passengers_going_to(floor)
-        self._passengers = self._passengers_not_going_to(floor)
+        leaving_passengers = self._passengers_going_to(floor=floor)
+        self._passengers = self._passengers_not_going_to(floor=floor)
         return leaving_passengers
 
     def get_destinations(self) -> list[int]:
@@ -44,7 +43,7 @@ class Cabin:
         going_to_list = [
             passenger
             for passenger in self._passengers
-            if passenger.wants_to_get_off_at(floor)
+            if passenger.wants_to_get_off_at(floor=floor)
         ]
         return going_to_list
 
@@ -52,6 +51,6 @@ class Cabin:
         not_going_to_list = [
             passenger
             for passenger in self._passengers
-            if not passenger.wants_to_get_off_at(floor)
+            if not passenger.wants_to_get_off_at(floor=floor)
         ]
         return not_going_to_list
