@@ -1,5 +1,5 @@
-from building.constants import GROUND_FLOOR
 from passengers.passenger import PassengersGroup
+from utils.constants import GROUND_FLOOR
 
 
 class Building:
@@ -20,7 +20,7 @@ class Building:
         self._external_calls.pop(floor, None)
 
     def all_calls(self) -> list[int]:
-        return list(self._external_calls.keys())
+        return list(self._external_calls.values())
 
     def is_called_at(self, floor: int) -> bool:
         return floor in self._external_calls
